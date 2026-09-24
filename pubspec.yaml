@@ -43,7 +43,7 @@ dev_dependencies:
   # Used only by tool/test/check_architecture_test.dart, which tests a
   # pure-Dart tool/ script and so uses package:test rather than
   # flutter_test — not part of the app itself.
-  test: ^1.25.15
+  test: ^1.31.1
   very_good_analysis: ^10.0.0
   # Used only by tool/sync_ai_config.dart to parse ai/agents/*.yaml and
   # ai/mcp.yaml — not part of the app itself.
