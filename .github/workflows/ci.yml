@@ -38,7 +38,7 @@ jobs:
         uses: dart-lang/setup-dart@v1
 
       - name: Cache FVM-managed Flutter SDKs
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/fvm/versions
           key: fvm-${{ runner.os }}-${{ hashFiles('.fvmrc') }}
