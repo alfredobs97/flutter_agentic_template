@@ -60,6 +60,6 @@ jobs:
       # add a `.gitleaks.toml` at the repo root to tune allowlists/rules
       # rather than disabling the step.
       - name: Scan for committed secrets
-        uses: gitleaks/gitleaks-action@v2
+        uses: gitleaks/gitleaks-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
