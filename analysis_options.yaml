@@ -1,0 +1,52 @@
+# Applies to the whole pub workspace: the analyzer walks up from any file to
+# the nearest analysis_options.yaml, and none of packages/{domain,data,ui}
+# ships its own, so this single file governs all four packages.
+#
+# very_good_analysis turns on strict-casts, strict-inference and
+# strict-raw-types plus ~200 lint rules — a stronger baseline than
+# flutter_lints, with no paid tooling required. See
+# https://pub.dev/packages/very_good_analysis
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/l10n/app_localizations*.dart"
+    - "build/**"
+
+linter:
+  rules:
+    # A template ships example/stub files meant to be read top-to-bottom;
+    # forcing doc comments on every public member there is noise, not signal.
+    # Layer-boundary rules (domain must not import flutter/data, etc.) are
+    # enforced separately — and explained — by
+    # `dart run tool/check_architecture.dart`; see AGENTS.md → "Dependency rule".
+    public_member_api_docs: false
+    # This project formats at 100 columns (`dart format -l 100`, see
+    # tool/quality_gate.dart and AGENTS.md → "Commands"), not
+    # very_good_analysis's 80-column default. `dart format` is the real
+    # enforcement; this lint would just double-report the same thing at the
+    # wrong threshold.
+    lines_longer_than_80_chars: false
+    # Convention: relative imports within the SAME package (e.g. inside
+    # packages/ui/lib/src/...), package: imports for everything that
+    # crosses a package boundary. Relative imports are idiomatic Dart and
+    # keep a package's internal moves (renaming/relocating a file) from
+    # touching import strings all over the package.
+    always_use_package_imports: false
+    # A one-method `abstract interface class` (IdGenerator, and every
+    # data-provider interface added under packages/domain) is not
+    # "unnecessary abstraction" here — it's the injection seam the whole
+    # architecture is built on (AGENTS.md → "Dependency rule" and
+    # "Test doubles"): production code gets a concrete implementation,
+    # tests get a fake. Collapsing it into a top-level function would
+    # remove the ability to mock/fake it.
+    one_member_abstracts: false
+    # DomainFailure.toString() is a debug-only aid (see its doc comment),
+    # never shown to a user — the rule this lint guards against.
+    no_runtimetype_tostring: false

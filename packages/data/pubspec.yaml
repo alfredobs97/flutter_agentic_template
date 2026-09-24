@@ -1,0 +1,22 @@
+name: data
+description: >
+  External integrations layer. Implements the `domain` data-provider
+  interfaces and translates infrastructure exceptions into `DomainFailure`s.
+  Ships with no storage/network package pre-installed — see
+  `.agents/skills/choose-data-stack/SKILL.md` to add one.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.12.2
+
+resolution: workspace
+
+dependencies:
+  domain:
+    path: ../domain
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^10.0.0

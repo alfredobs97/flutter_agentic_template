@@ -1,0 +1,70 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+# Unanchored (no leading slash) so this also matches packages/*/build/ and
+# packages/*/coverage/ — this repo is a pub workspace with four packages
+# (the app root plus packages/domain, packages/data, packages/ui), each of
+# which gets its own build/ output.
+build/
+coverage/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# FVM Version Cache
+.fvm/
+
+# --- Secrets: never commit these. See docs/android-release-signing.md and
+# .agents/skills/choose-data-stack/SKILL.md (Firebase option).
+android/key.properties
+*.jks
+*.keystore
+**/google-services.json
+**/GoogleService-Info.plist
+.env
+.env.*
+!.env.example
+
+# --- Per-developer AI tool permissions. `.claude/settings.json` is
+# generated (see ai/README.md) and shared by the whole team; this file is
+# each developer's own local permission grants and must never be committed
+# — one developer's broad Bash allowlist is not a rule to impose on
+# everyone else who clones this template.
+.claude/settings.local.json

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" role="img"
+     aria-label="Dependencies point only inward, toward domain: root wires up packages/data and packages/ui, both of which depend on packages/domain, but packages/ui and packages/data never import each other.">
+  <title>flutter_agentic_template — dependency direction</title>
+  <desc>
+    root (lib/) instantiates packages/data and packages/ui. packages/data
+    implements packages/domain's data-provider interfaces; packages/ui reads
+    packages/domain's repositories. packages/ui and packages/data never
+    import one another — that boundary is enforced by
+    tool/check_architecture.dart.
+  </desc>
+
+  <defs>
+    <marker id="arrow-dark" viewBox="0 0 10 10" refX="8.5" refY="5"
+            markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e6edf3"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="26" font-weight="700" fill="#e6edf3">flutter_agentic_template</text>
+  <text x="450" y="64" text-anchor="middle" font-family="ui-sans-serif, system-ui, Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="15" fill="#8b949e">Clean Architecture on a Dart pub workspace</text>
+
+  <!-- Arrows: root -> data, root -> ui -->
+  <line x1="400" y1="152" x2="248" y2="230" stroke="#e6edf3" stroke-width="2" marker-end="url(#arrow-dark)"/>
+  <line x1="500" y1="152" x2="652" y2="230" stroke="#e6edf3" stroke-width="2" marker-end="url(#arrow-dark)"/>
+  <text x="325" y="188" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#8b949e">instantiates</text>
+  <text x="575" y="188" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#8b949e">instantiates</text>
+
+  <!-- Arrows: data -> domain, ui -> domain -->
+  <line x1="175" y1="292" x2="392" y2="372" stroke="#e6edf3" stroke-width="2" marker-end="url(#arrow-dark)"/>
+  <line x1="725" y1="292" x2="508" y2="372" stroke="#e6edf3" stroke-width="2" marker-end="url(#arrow-dark)"/>
+  <text x="255" y="335" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#8b949e">implements</text>
+  <text x="645" y="335" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#8b949e">reads via repository</text>
+
+  <!-- Forbidden edge: ui and data never import each other -->
+  <line x1="285" y1="262" x2="410" y2="262" stroke="#f85149" stroke-width="2" stroke-dasharray="7 6"/>
+  <line x1="494" y1="262" x2="615" y2="262" stroke="#f85149" stroke-width="2" stroke-dasharray="7 6"/>
+  <text x="452" y="268" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="700" fill="#f85149">✕</text>
+  <text x="452" y="244" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#f85149">never imported</text>
+
+  <!-- Root box -->
+  <rect x="345" y="92" width="210" height="60" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="450" y="118" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="700" fill="#e6edf3">root (lib/)</text>
+  <text x="450" y="136" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#8b949e">composition root</text>
+
+  <!-- Data box -->
+  <rect x="70" y="232" width="210" height="60" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="175" y="258" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="700" fill="#e6edf3">packages/data</text>
+  <text x="175" y="276" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#8b949e">external integrations</text>
+
+  <!-- UI box -->
+  <rect x="620" y="232" width="210" height="60" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="725" y="258" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="700" fill="#e6edf3">packages/ui</text>
+  <text x="725" y="276" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#8b949e">presentation</text>
+
+  <!-- Domain box (accent) -->
+  <rect x="335" y="372" width="230" height="64" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="2"/>
+  <text x="450" y="399" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="700" fill="#c7d2fe">packages/domain</text>
+  <text x="450" y="418" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" fill="#a5b4fc">pure Dart core</text>
+
+  <!-- Caption -->
+  <text x="450" y="464" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#8b949e">Dependencies point only inward, toward domain.</text>
+  <text x="450" y="483" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#8b949e">ui and data never import each other — enforced by tool/check_architecture.dart.</text>
+</svg>

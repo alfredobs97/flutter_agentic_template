@@ -1,0 +1,19 @@
+# GENERATED FILE — DO NOT EDIT.
+# Source: run `fvm dart run tool/sync_ai_config.dart` after editing the
+# files under ai/ or .agents/skills/. See ai/README.md.
+
+[agents]
+enabled = true
+
+[mcp_servers.dart]
+command = "fvm"
+args = ["dart", "mcp-server"]
+enabled = true
+
+[mcp_servers.figma]
+command = "npx"
+args = ["-y", "mcp-remote", "https://mcp.figma.com/mcp"]
+enabled = false
+# Disabled by default — see ai/mcp.yaml. Set enabled = true above
+# once you have credentials configured.
+
