@@ -1,0 +1,4 @@
+// Flavor overrides for `dev`. Included by Debug-dev.xcconfig,
+// Release-dev.xcconfig and Profile-dev.xcconfig — see AGENTS.md → "Flavors".
+APP_BUNDLE_ID_SUFFIX=.dev
+APP_DISPLAY_NAME=Flutter Agentic Template Dev

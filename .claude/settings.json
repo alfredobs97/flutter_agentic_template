@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "fvm dart run \"${CLAUDE_PROJECT_DIR}/tool/hooks/format_changed.dart\""
+          }
+        ]
+      }
+    ]
+  },
+  "disabledMcpjsonServers": [
+    "figma"
+  ]
+}

@@ -1,0 +1,77 @@
+name: flutter_agentic_template
+description: >
+  An AI-agent-ready Flutter template: Clean Architecture on Dart pub
+  workspaces, pre-wired for Claude Code, OpenAI Codex, Google Antigravity
+  and OpenCode, with AGENTS.md/skill support for Pi.
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.12.2
+
+# This is the workspace root AND the composition root of the app (see
+# `lib/main.dart`). The three packages below are resolved from their local
+# path via `resolution: workspace` in each package's own pubspec.yaml.
+workspace:
+  - packages/domain
+  - packages/data
+  - packages/ui
+
+dependencies:
+  data:
+    path: packages/data
+  domain:
+    path: packages/domain
+  flutter:
+    sdk: flutter
+  # Needed at this level so the composition root can build the
+  # MultiRepositoryProvider / MultiBlocProvider tree in lib/app.dart.
+  flutter_bloc: ^9.1.1
+  # App icon and splash screen generators. Safe to remove if you supply your
+  # own native assets instead — see docs/getting-started.md.
+  flutter_native_splash: ^2.4.7
+  # Needed at this level so lib/app.dart can type its `router` parameter as
+  # GoRouter (the value itself is built by `ui`'s `buildAppRouter()`).
+  go_router: ^17.3.0
+  ui:
+    path: packages/ui
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.14.4
+  flutter_test:
+    sdk: flutter
+  # Used only by tool/test/check_architecture_test.dart, which tests a
+  # pure-Dart tool/ script and so uses package:test rather than
+  # flutter_test — not part of the app itself.
+  test: ^1.25.15
+  very_good_analysis: ^10.0.0
+  # Used only by tool/sync_ai_config.dart to parse ai/agents/*.yaml and
+  # ai/mcp.yaml — not part of the app itself.
+  yaml: ^3.1.2
+
+flutter:
+  uses-material-design: true
+
+# --- flutter_launcher_icons: replace assets/icon/app_icon.png with your own
+# 1024x1024 artwork before running `dart run flutter_launcher_icons`.
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/app_icon.png"
+  min_sdk_android: 21
+
+# --- flutter_native_splash: run `dart run flutter_native_splash:create`
+# after replacing the same artwork above.
+flutter_native_splash:
+  color: "#0E0E10"
+  image: assets/icon/app_icon.png
+  color_dark: "#0E0E10"
+  image_dark: assets/icon/app_icon.png
+  android_12:
+    image: assets/icon/app_icon.png
+    color: "#0E0E10"
+    image_dark: assets/icon/app_icon.png
+    color_dark: "#0E0E10"
+  android: true
+  ios: true
+  web: false

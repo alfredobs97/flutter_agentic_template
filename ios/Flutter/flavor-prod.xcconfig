@@ -1,0 +1,4 @@
+// Flavor overrides for `prod`. Included by Debug-prod.xcconfig,
+// Release-prod.xcconfig and Profile-prod.xcconfig — see AGENTS.md → "Flavors".
+APP_BUNDLE_ID_SUFFIX=
+APP_DISPLAY_NAME=Flutter Agentic Template

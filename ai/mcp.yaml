@@ -1,0 +1,40 @@
+# MCP servers available to agents working in this template.
+#
+# SECURITY: this file holds environment VARIABLE NAMES only, never values.
+# tool/sync_ai_config.dart renders each server into every tool's own format
+# (.mcp.json's ${VAR} expansion, .codex/config.toml's env_vars, .agents/
+# mcp_config.json's env) — but the actual secret always comes from the
+# developer's own shell/CI environment, never from a file in this repo.
+# See AGENTS.md and the organization's secret-handling policy before adding
+# a server that needs a token.
+#
+# KNOWN CAVEAT (Antigravity): some Antigravity CLI versions have shipped
+# with project-local MCP config (this file's generated
+# .agents/mcp_config.json) being read but not actually applied — only the
+# home-level ~/.gemini/config/mcp_config.json took effect. If a server
+# configured here doesn't show up in Antigravity, check your CLI version
+# against google-antigravity/antigravity-cli's open issues before assuming
+# this file is wrong, and fall back to adding the server at the home level
+# if needed.
+
+servers:
+  dart:
+    description: >
+      The official Dart MCP server — gives the agent direct access to
+      analysis, running tests, hot reload, and pub commands instead of
+      shelling out blind. Enabled by default; no secret required.
+    command: fvm
+    args: [dart, mcp-server]
+    env: []
+    enabled_by_default: true
+
+  figma:
+    description: >
+      Optional. Only useful if you're implementing UI from Figma designs
+      (see ai/agents/ui-implementer.yaml and .agents/skills/ui-screen/SKILL.md).
+      Uses the Figma MCP remote server with OAuth — no long-lived token is
+      stored anywhere. Leave disabled if you don't use Figma.
+    command: npx
+    args: ["-y", "mcp-remote", "https://mcp.figma.com/mcp"]
+    env: []
+    enabled_by_default: false

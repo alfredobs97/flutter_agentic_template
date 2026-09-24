@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "dart": {
+      "command": "fvm",
+      "args": [
+        "dart",
+        "mcp-server"
+      ],
+      "disabled": false
+    },
+    "figma": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.figma.com/mcp"
+      ],
+      "disabled": true
+    }
+  }
+}

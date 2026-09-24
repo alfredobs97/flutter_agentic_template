@@ -1,0 +1,29 @@
+# Owner review is required on the AI configuration itself. If you fork or
+# generate a new repo from this template, replace @alfredobs97 below with
+# your own GitHub username or team.
+#
+# `AGENTS.md` is hand-written, not generated — it is the project's
+# conventions guide for humans and agents alike. `ai/agents/*.yaml`,
+# `ai/workflows/*.md`, `ai/mcp.yaml` and `.agents/skills/*/SKILL.md` are the
+# other hand-written sources; `tool/sync_ai_config.dart` renders everything
+# else under `.claude/`, `.codex/`, `.opencode/`, `opencode.jsonc`, and
+# `.agents/agents|workflows|rules|mcp_config.json` from them — see
+# ai/README.md. An unreviewed edit to any of these hand-written sources can
+# silently change how every subagent, MCP server and workflow behaves, so
+# it is worth requiring an explicit reviewer rather than letting it merge
+# like ordinary code. Uncomment and fill in the lines below to enable this
+# protection.
+#
+# `tool/hooks/format_changed.dart` and `.pi/extensions/` are a different,
+# higher-stakes category: they are executable code that a harness runs
+# automatically (a Claude Code PostToolUse hook, a Pi extension) on every
+# contributor's machine once trusted — not just config a harness reads.
+# Covering them here means executable harness code can't merge without an
+# explicit reviewer, the same reasoning as reviewing a CI workflow change.
+
+/ai/ @alfredobs97
+/.agents/skills/ @alfredobs97
+/AGENTS.md @alfredobs97
+/packages/*/AGENTS.md @alfredobs97
+/tool/hooks/ @alfredobs97
+/.pi/extensions/ @alfredobs97

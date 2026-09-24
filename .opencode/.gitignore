@@ -1,0 +1,7 @@
+# GENERATED FILE — DO NOT EDIT.
+# Source: run `fvm dart run tool/sync_ai_config.dart` after editing the
+# files under ai/ or .agents/skills/. See ai/README.md.
+node_modules
+package.json
+bun.lock
+package-lock.json

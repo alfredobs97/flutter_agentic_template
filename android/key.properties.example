@@ -1,0 +1,6 @@
+# Copy to android/key.properties (gitignored) and fill in real values before
+# a release build. See docs/android-release-signing.md.
+storePassword=
+keyPassword=
+keyAlias=
+storeFile=

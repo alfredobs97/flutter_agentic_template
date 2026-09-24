@@ -1,0 +1,4 @@
+// Profile has no dedicated base xcconfig upstream (Flutter reuses
+// Release.xcconfig for Profile) — kept consistent with that here.
+#include "Release.xcconfig"
+#include "flavor-dev.xcconfig"

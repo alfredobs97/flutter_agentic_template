@@ -1,0 +1,65 @@
+# Continuous Integration
+#
+# What this does: on every push and pull request, resolves the pub
+# workspace, then runs `tool/quality_gate.dart`, which alone covers
+# formatting, `flutter analyze --fatal-infos`, the architecture boundary
+# check (`tool/check_architecture.dart`), the AI-config sync check
+# (`tool/sync_ai_config.dart --check`) and every package's test suite
+# (root, packages/domain, packages/data, packages/ui). See AGENTS.md
+# section 17/18 for what each of those individually does.
+#
+# `tool/quality_gate.dart` runs every step through the `fvm` executable
+# (see AGENTS.md section 5 — `fvm flutter`/`fvm dart`, no exceptions, so
+# CI resolves the exact same pinned SDK a contributor's machine does), so
+# this workflow installs FVM itself rather than pinning Flutter via a
+# separate GitHub Action.
+#
+# What this deliberately does NOT do: build a native Android or iOS
+# artifact (APK/AAB/IPA). A full native build needs Java/Android SDK (or a
+# macOS runner + Xcode for iOS) and is slow; keeping CI to
+# format+analyze+test on ubuntu-latest keeps pull requests fast and cheap to
+# run on every push. Building and signing a release artifact is handled by
+# `.github/workflows/release.yml.example` — an inactive, tag-triggered
+# template that must be customized (secrets, signing, distribution target)
+# and renamed to `release.yml` before use.
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  quality-gate:
+    name: Quality gate (format, analyze, architecture, AI-config, tests)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Dart (needed to activate fvm itself)
+        uses: dart-lang/setup-dart@v1
+
+      - name: Cache FVM-managed Flutter SDKs
+        uses: actions/cache@v4
+        with:
+          path: ~/fvm/versions
+          key: fvm-${{ runner.os }}-${{ hashFiles('.fvmrc') }}
+
+      - name: Install FVM
+        run: dart pub global activate fvm
+
+      - name: Install the Flutter SDK pinned in .fvmrc
+        run: ~/.pub-cache/bin/fvm install
+
+      - name: Install dependencies (pub workspace)
+        run: ~/.pub-cache/bin/fvm flutter pub get
+
+      - name: Run quality gate (format, analyze, architecture, AI-config sync, tests)
+        run: ~/.pub-cache/bin/fvm dart run tool/quality_gate.dart
+
+      # First-pass secret scan, no config required. If it starts flagging
+      # known-safe patterns (e.g. example values in key.properties.example),
+      # add a `.gitleaks.toml` at the repo root to tune allowlists/rules
+      # rather than disabling the step.
+      - name: Scan for committed secrets
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

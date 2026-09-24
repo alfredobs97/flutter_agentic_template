@@ -1,0 +1,24 @@
+{
+  // GENERATED FILE — DO NOT EDIT.
+  // Source: run `fvm dart run tool/sync_ai_config.dart` after editing the
+  // files under ai/ or .agents/skills/. See ai/README.md.
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "dart": {
+      "type": "local",
+      "command": ["fvm", "dart", "mcp-server"],
+      "enabled": true
+    },
+    "figma": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-remote", "https://mcp.figma.com/mcp"],
+      "enabled": false
+    }
+  },
+  "formatter": {
+    "dart": {
+      "command": ["fvm", "dart", "format", "-l", "100", "$FILE"],
+      "extensions": [".dart"]
+    }
+  }
+}

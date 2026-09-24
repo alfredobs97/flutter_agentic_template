@@ -1,0 +1,10 @@
+{
+  "@@locale": "es",
+  "appTitle": "Flutter Agentic Template",
+  "homeScreenTitle": "Inicio",
+  "homeScreenPlaceholder": "Ejecuta la skill new-feature para sustituir esta pantalla.",
+  "genericErrorMessage": "Algo salió mal. Inténtalo de nuevo.",
+  "routeNotFoundTitle": "Página no encontrada",
+  "routeNotFoundMessage": "La página que buscas no existe.",
+  "goHomeButtonLabel": "Ir al inicio"
+}

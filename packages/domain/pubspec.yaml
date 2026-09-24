@@ -1,0 +1,19 @@
+name: domain
+description: >
+  Pure-Dart core: entities, data-provider interfaces, concrete repositories
+  and the sealed failure hierarchy. No Flutter, no data-source packages.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.12.2
+
+resolution: workspace
+
+dependencies:
+  equatable: ^2.0.7
+  meta: ^1.16.0
+
+dev_dependencies:
+  test: ^1.25.15
+  very_good_analysis: ^10.0.0

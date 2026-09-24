@@ -1,0 +1,32 @@
+version: 2
+updates:
+  # Root app (composition root) — its own pubspec.yaml at the repo root.
+  - package-ecosystem: "pub"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # Each pub workspace package has its own pubspec.yaml, so each needs its
+  # own dependabot entry — a workspace does not get transitively covered by
+  # scanning the root directory alone.
+  - package-ecosystem: "pub"
+    directory: "/packages/domain"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/data"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/ui"
+    schedule:
+      interval: "weekly"
+
+  # Keeps the action versions pinned in .github/workflows/*.yml (and
+  # release.yml.example, once renamed) current.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
