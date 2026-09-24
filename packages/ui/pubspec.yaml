@@ -13,7 +13,7 @@ resolution: workspace
 dependencies:
   domain:
     path: ../domain
-  equatable: ^2.0.7
+  equatable: ^3.0.0
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
