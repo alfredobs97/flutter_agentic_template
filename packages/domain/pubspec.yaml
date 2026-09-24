@@ -12,7 +12,7 @@ resolution: workspace
 
 dependencies:
   equatable: ^2.0.7
-  meta: ^1.16.0
+  meta: ^1.19.0
 
 dev_dependencies:
   test: ^1.25.15
