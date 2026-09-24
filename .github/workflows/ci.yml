@@ -34,8 +34,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Pinned to the exact Dart version Flutter 3.44.7 (.fvmrc) bundles.
+      # dart-lang/setup-dart@v1's own default resolves to whatever the
+      # latest stable Dart release is at the time — if that's newer than
+      # the pinned Flutter SDK's bundled Dart, `dart pub global activate
+      # fvm` compiles the fvm executable against a newer kernel format
+      # than the pinned SDK understands, and every `fvm dart`/`fvm
+      # flutter` invocation later in this workflow fails with "Can't load
+      # Kernel binary: Invalid kernel binary format version". Keep this in
+      # sync with `fvm dart --version`'s output whenever `.fvmrc` changes.
       - name: Set up Dart (needed to activate fvm itself)
         uses: dart-lang/setup-dart@v1
+        with:
+          sdk: "3.12.2"
 
       - name: Cache FVM-managed Flutter SDKs
         uses: actions/cache@v4
