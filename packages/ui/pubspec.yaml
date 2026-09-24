@@ -20,7 +20,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   go_router: ^17.3.0
-  intl: any
+  intl: 0.20.3
 
 dev_dependencies:
   bloc_test: ^10.0.0
